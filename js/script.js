@@ -52,14 +52,10 @@ var menu = [
 ]
 
 
-function myFunction() {
-    var x = document.getElementById('demo');
-    if (x.style.display === 'none') {
-        x.style.display = 'block';
-        navFunc(menu, "");
-    } else {
-        x.style.display = 'none';
-    }
+
+function onload() {
+	 navFunc(menu, "");
+    
 }
 
 var root = document.getElementById("demo");
@@ -89,19 +85,21 @@ function navFunc(menuItems, levelStr) {
   	}
 }
 
-function toggleMenuItems(parentID, menuItems) {
+function toggleMenuItems(parentID, menuItems, action) {
 	for (var i = 0; i < menuItems.length; i++) {
 		var childId = parentID.toString() + " " + i;
-		console.log(childId);
 		var tempEl = document.getElementById(childId);
-		if(tempEl.getAttribute("class")  == "d-none"){
+		if(action  === "show"){
 			tempEl.removeAttribute("class", "d-none");
 			tempEl.setAttribute("class", "d-block");
-			console.log("show");
-		}else if(tempEl.getAttribute("class")  == "d-block"){
+			tempEl.style.width = "100%";
+		} else {
 			tempEl.removeAttribute("class", "d-block");
 			tempEl.setAttribute("class", "d-none");
-			console.log("hide");
+			tempEl.style.width = "0";
+			if (menuItems[i].children){
+				toggleMenuItems(childId, menuItems[i].children, action);
+			}
 		}
   	}
 }
@@ -148,6 +146,18 @@ function menuActionHandler(parent) {
 		}
 	}
 
- 	toggleMenuItems(parent.id, current);
-	
+	var action = "show";
+	if(parent.nextSibling.getAttribute("class") === "d-block") {
+		action = "hide";
+	}
+ 	toggleMenuItems(parent.id, current, action);
+}
+
+
+function openNav() {
+    document.getElementById("mySidenav").style.width = "100%";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
 }
