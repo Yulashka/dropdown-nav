@@ -10,7 +10,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.min.css">
   </head>
-  <body>
+  <body onLoad="onload()">
    
   <nav>
     <span>Alaska<i class="fa fa-plane fa-2x" aria-hidden="true"></i></span>
@@ -18,8 +18,20 @@
       <i class="fa fa-bars fa-2x right" aria-hidden="true"></i>
     </a>
   </nav>
-  <ul id="demo" style="display:none;"></ul>
+  <div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <ul id="demo"></ul>
+</div>
+
+<h2>Animated Sidenav Example Full Width</h2>
+<p>Click on the element below to open the navigation menu.</p>
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+  
     <!-- JavaScript -->
     <script src="js/script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.5/waypoints.min.js"></script>
+
+
   </body>
 </html>
